@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  tcg_pos:
+    # build the same image we tested earlier
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    # mount project into container for live development
+    volumes:
+      - .:/usr/src/app:delegated
+      # ensure host node_modules is ignored inside container
+      - /usr/src/app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true   # necessary on some Docker setups for file watching
+    command: ["npx", "ng", "serve", "--host", "0.0.0.0", "--poll=2000"]

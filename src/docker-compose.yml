@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  angular:
+    container_name: angular-dev
+    build: .
+    working_dir: /usr/src/app   # 👈 THIS LINE
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npx ng serve --host 0.0.0.0 --poll=2000
