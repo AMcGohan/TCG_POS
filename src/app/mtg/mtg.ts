@@ -2,6 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import axios from 'axios';
 import { CurrencyPipe } from '@angular/common';
+import { ClientLists } from '../client-lists/client-lists';
+import { ClientListService } from '../services/client-list.service';
 
 @Component({
   selector: 'app-mtg',
@@ -12,7 +14,7 @@ import { CurrencyPipe } from '@angular/common';
 export class Mtg {
   cards: any[] = [];  // flattened list of card faces for display
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private clientListService: ClientListService) {}
 
   private normalizeCards(rawCards: any[]): any[] {
     return rawCards.map((card: any) => {
@@ -22,8 +24,9 @@ export class Mtg {
         return {
           name: frontFace.name,
           image_uris: frontFace.image_uris,
-          card_set: card.set,
+          card_set: card.set.toUpperCase(),
           card_cn: card.collector_number,
+          card_id: card.id,
           prices: card.prices.usd,
           prices_foil: card.prices.usd_foil,
         };
@@ -34,6 +37,7 @@ export class Mtg {
         image_uris: card.image_uris,
         card_set: card.set,
         card_cn: card.collector_number,
+        card_id: card.id,
         prices: card.prices.usd,
         prices_foil: card.prices.usd_foil,
       };
@@ -55,5 +59,9 @@ export class Mtg {
     } catch (error) {
       console.error('search failed', error);
     }
+  }
+
+  addToList(cardId: string){
+    this.clientListService.addToList(cardId);
   }
 }

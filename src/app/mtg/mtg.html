@@ -17,6 +17,7 @@
         <h3>{{ card.card_set }}, {{ card.card_cn }}</h3> 
         <h4>Price: {{ card.prices? (card.prices | currency) : 'Price not available' }}</h4>
         <h4>Foil: {{ card.prices_foil ? (card.prices_foil | currency) : 'Price not available' }}</h4>
+        <button (click)="addToList(card.card_id)">Add To List</button>
     </div>
     }
 </div>
