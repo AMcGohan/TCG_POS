@@ -1,6 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import axios from 'axios';
 import { CurrencyPipe } from '@angular/common';
 import { ClientLists } from '../client-lists/client-lists';
 import { ClientListService } from '../services/client-list.service';
@@ -45,20 +44,20 @@ export class Mtg {
   }
 
   async search(card_query: string) {
-    event?.preventDefault();
-    if (!card_query) {
-      this.cards = [];
-      return;
-    }
-    try {
-      const response = await axios.get(`https://api.scryfall.com/cards/search?q=${card_query}&unique=prints`);
-      const rawCards = response.data.data || [];
-      this.cards = this.normalizeCards(rawCards);
-      console.log('search results', rawCards);
-      this.cdr.markForCheck();
-    } catch (error) {
-      console.error('search failed', error);
-    }
+    // event?.preventDefault();
+    // if (!card_query) {
+    //   this.cards = [];
+    //   return;
+    // }
+    // try {
+    //   const response = await axios.get(`https://api.scryfall.com/cards/search?q=${card_query}&unique=prints`);
+    //   const rawCards = response.data.data || [];
+    //   this.cards = this.normalizeCards(rawCards);
+    //   console.log('search results', rawCards);
+    //   this.cdr.markForCheck();
+    // } catch (error) {
+    //   console.error('search failed', error);
+    // }
   }
 
   addToList(cardId: string){
