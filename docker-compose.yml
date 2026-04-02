@@ -1,7 +1,5 @@
-version: '3.8'
-
 services:
-  tcg_pos:
+  tcg_frontend:
     # build the same image we tested earlier
     build:
       context: .
@@ -16,3 +14,28 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true   # necessary on some Docker setups for file watching
     command: ["npx", "ng", "serve", "--host", "0.0.0.0", "--poll=2000"]
+  tcg_db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/tcg_data
+  db_admin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@epic.com
+      PGADMIN_DEFAULT_PASSWORD: adminpass
+    ports:
+      - "5050:80"
+    depends_on:
+      - tcg_db
+
+volumes:
+  postgres_data:
+
