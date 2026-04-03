@@ -1,0 +1,17 @@
+.cards {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card {
+    margin: 10px;   
+}
+.search_mtg {
+    display: flex;
+    justify-content: center;
+}
+img {
+    max-width: 300px;
+    height: auto;
+}
