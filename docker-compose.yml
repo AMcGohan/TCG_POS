@@ -35,6 +35,18 @@ services:
       - "5050:80"
     depends_on:
       - tcg_db
+  tcg_backend:
+    build:
+      context: backend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/usr/src/app:delegated
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "start"]
 
 volumes:
   postgres_data:
