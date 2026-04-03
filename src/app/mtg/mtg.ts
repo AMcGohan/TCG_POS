@@ -16,7 +16,7 @@ export class Mtg {
 
   async getSephiroth() {
     try {
-      const response = await fetch('http://localhost:3000/api/cards');
+      const response = await fetch('http://localhost:3000/api/cards/mtg');
       if (!response.ok) throw new Error(`Status: ${response.status}`);
       const result = await response.json();
       this.cards[0] = result.cards[0];
