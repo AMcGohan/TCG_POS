@@ -15,26 +15,18 @@ services:
       - CHOKIDAR_USEPOLLING=true   # necessary on some Docker setups for file watching
     command: ["npx", "ng", "serve", "--host", "0.0.0.0", "--poll=2000"]
   tcg_db:
-    image: postgres:latest
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: tcg_db
+    image: mysql:latest
+    restart: no
+    environment:                        
+      MYSQL_ROOT_PASSWORD: games2026
+      MYSQL_DATABASE: tcg_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: games2026
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      - postgres_data:/var/lib/postgresql/tcg_data
-  db_admin:
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@epic.com
-      PGADMIN_DEFAULT_PASSWORD: adminpass
-    ports:
-      - "5050:80"
-    depends_on:
-      - tcg_db
+      # - ./init:/docker-entrypoint-initdb.d:ro
+      - mysql_data:/var/lib/mysql
   tcg_backend:
     build:
       context: backend/
@@ -49,5 +41,4 @@ services:
     command: ["npm", "start"]
 
 volumes:
-  postgres_data:
-
+  mysql_data:
