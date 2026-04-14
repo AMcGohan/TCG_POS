@@ -1,9 +1,10 @@
 import pool from "../db/connection.js"
 
-export async function getAllMTGCardsService() {
+export async function getMTGCardService(name) {
     try {
-        const [rows] = await pool.query('SELECT name, setCode, printings FROM cards WHERE name = ?', ['Ponder']);
+        const [rows] = await pool.query('SELECT name, setCode, number FROM cards WHERE name = ?', [name]);
         console.log("Magic result: ", rows);
+        console.log("Input: ", name)
         return rows;
     } catch (error) {
         console.error("Database error:", error.message);

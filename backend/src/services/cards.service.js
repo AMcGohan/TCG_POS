@@ -1,7 +1,7 @@
 import * as cardModels from "../models/cards.models.js";
 
-export async function getMTGCardsService() {
-    return await cardModels.getAllMTGCardsService();
+export async function getMTGCardsService(name) {
+    return await cardModels.getMTGCardService(name);
 }
 
 export async function getRiftCardsService() {
