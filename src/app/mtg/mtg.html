@@ -2,8 +2,8 @@
     @for (card of cards; track $index) {
     <div class="card">
         <img src="{{ card.card_img }}" alt="{{ card.card_name }}" />
-        <p>{{ card.card_name }}</p>
-        <h3>{{ card.set }}, {{ card.cn }}</h3> 
+        <p>{{ card.name }}</p>
+        <h3>{{ card.setCode }}, {{ card.number }}</h3> 
     </div>
     }
 </div>
