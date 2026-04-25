@@ -1,3 +1,13 @@
+<form class="search_mtg" (ngSubmit)="search(filter.value)">
+    <input
+    type="text"
+    placeholder="Search MTG Cards"
+    #filter
+    />
+
+    <button class="primary" type="submit">Search</button>
+</form>
+
 <div class="cards">
     @for (card of cards; track $index) {
     <div class="card">
@@ -5,5 +15,7 @@
         <p>{{ card.name }}</p>
         <h3>{{ card.setCode }}, {{ card.number }}</h3> 
     </div>
+    } @empty {
+        <li>No cards found</li>
     }
 </div>
