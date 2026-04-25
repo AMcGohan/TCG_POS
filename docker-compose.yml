@@ -38,6 +38,8 @@ services:
       - /usr/src/app/node_modules
     environment:
       - NODE_ENV=development
+    depends_on:
+      - tcg_db
     command: ["npm", "start"]
 
 volumes:
