@@ -53,5 +53,5 @@ __screenshots__/
 Thumbs.db
 
 # database
-db/AllPrintings.json
+db_stuff/AllPrintings.json
 init/02-mtg.sql
