@@ -7,3 +7,7 @@ export async function getMTGCardsService(name) {
 export async function getRiftCardsService() {
     return await cardModels.getAllRiftCardsService();
 }
+
+export async function getBuyListService(id) {
+    return await cardModels.getBuyListService(id);
+}
