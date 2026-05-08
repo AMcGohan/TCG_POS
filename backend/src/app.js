@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cardRoutes from "./routes/cards.routes.js"
+import listRoutes from "./routes/lists.routes.js";
 
 export function createApp() {
 
@@ -12,6 +13,7 @@ export function createApp() {
     app.use(express.json());
 
     app.use("/api/cards", cardRoutes);
+    app.use("/api/list", listRoutes);
     
     return app;
 }
