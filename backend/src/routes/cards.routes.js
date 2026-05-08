@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { listMTGCards, listRiftCards, fetchBuyList } from "../controllers/cards.controllers.js";
+import { listMTGCards, listRiftCards } from "../controllers/cards.controllers.js";
 
 const router = Router();
 

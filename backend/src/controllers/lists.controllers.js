@@ -1,4 +1,4 @@
-import { getBuyListService, createBuyListService } from "../models/lists.models.js";
+import { getBuyListService, createBuyListService } from "../services/lists.service.js";
 
 export async function fetchBuyList(req, res) {
     try {
