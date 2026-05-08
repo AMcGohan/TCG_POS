@@ -1,4 +1,4 @@
-import { getMTGCardsService, getRiftCardsService, getBuyListService } from "../services/cards.service.js"
+import { getMTGCardsService, getRiftCardsService } from "../services/cards.service.js"
 
 export async function listMTGCards(req, res) {
     try {
