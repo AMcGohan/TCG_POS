@@ -4,6 +4,7 @@ import card_order from "./definitions/Card_Order.js";
 import card from "./definitions/Card.js";
 import customer from "./definitions/Customer.js";
 import card_price from "./definitions/Card_Price.js";
+import employee from "./definitions/Employee.js";
 
 buy_list.hasMany(card_order, {
     foreignKey: 'list_id'
@@ -25,6 +26,9 @@ card_order.belongsTo(card_price, { foreignKey: 'price_id'});
 buy_list.belongsTo(customer, { foreignKey: 'customer_id'});
 customer.hasMany(buy_list, { foreignKey: 'customer_id'});
 
+buy_list.belongsTo(employee, { foreignKey: 'emp_id'});
+employee.hasMany(buy_list, { foreignKey: 'emp_id'});
+
 export async function getBuyListService(id) {
     try {
         const result = await buy_list.findByPk(id, {
@@ -32,6 +36,10 @@ export async function getBuyListService(id) {
                 {
                     model: customer,
                     attributes: ['fname', 'lname']
+                },
+                {
+                    model: employee,
+                    attributes: ['emp_fname', 'emp_lname']
                 },
                 {
                     model: card_order,
