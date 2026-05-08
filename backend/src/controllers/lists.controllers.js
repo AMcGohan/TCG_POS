@@ -1,4 +1,4 @@
-import { getBuyListService, createBuyListService } from "../services/lists.service.js";
+import { getBuyListService, createBuyListService, addToBuyListService } from "../services/lists.service.js";
 
 export async function fetchBuyList(req, res) {
     try {
@@ -19,3 +19,15 @@ export async function createBuyList(req, res) {
         res.status(500).json({ error: "Failed to create list"});
     }
 }
+
+export async function addToBuyList(req, res) {
+    try {
+        const listId = req.params.id;
+        const cardsToAdd = req.body;
+        await addToBuyListService(listId, cardsToAdd);
+        const newList = await getBuyListService(listId)
+        res.json({newList});
+    } catch(error) {
+        console.error(error.message)
+    }
+} 
