@@ -13,7 +13,11 @@ const card_price = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull:false
         },
-        price: {
+        reg_price: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false
+        },
+        foil_price: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         }
