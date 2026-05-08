@@ -2,6 +2,7 @@ import pool from "../db/connection.js";
 import buy_list from "./definitions/List.js";
 import card_order from "./definitions/Card_Order.js";
 import card from "./definitions/Card.js";
+import customer from "./definitions/Customer.js";
 
 buy_list.hasMany(card_order, {
     foreignKey: 'list_id'
@@ -17,11 +18,17 @@ card_order.belongsTo(card, {
     foreignKey: 'card_id'
 });
 
+buy_list.belongsTo(customer, { foreignKey: 'customer_id'});
+customer.hasMany(buy_list, { foreignKey: 'customer_id'});
 
 export async function getBuyListService(id) {
     try {
         const result = await buy_list.findByPk(id, {
             include: [
+                {
+                    model: customer,
+                    attributes: ['fname', 'lname']
+                },
                 {
                     model: card_order,
                     include: [
