@@ -54,7 +54,8 @@ CREATE TABLE `card_trade` (
 CREATE TABLE `card_price` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `card_id` INT,
-  `price` decimal(10,2),
+  `reg_price` decimal(10,2),
+  `foil_price` decimal(10, 2),
   `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
