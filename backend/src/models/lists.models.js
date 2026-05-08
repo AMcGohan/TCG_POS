@@ -42,7 +42,7 @@ export async function getBuyListService(id) {
                         },
                         {
                             model: card_price,
-                            attributes: ['price']
+                            attributes: ['reg_price', 'foil_price']
                         }
                     ]
                 }
@@ -63,6 +63,20 @@ export async function createBuyListService(listData) {
             emp_id: listData.emp_id
         });
     } catch (error) {
+        console.error(error.message);
+        throw error;
+    }
+}
+
+export async function addToBuyListService(id, cardToAdd) {
+    try {
+        const cardOrderRes = await card_order.create({
+            list_id: id,
+            card_id: cardToAdd.card_id,
+            price_id: cardToAdd.price_id,
+            quantity: cardToAdd.quantity
+        });
+    } catch(error) {
         console.error(error.message);
         throw error;
     }
