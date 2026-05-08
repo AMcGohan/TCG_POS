@@ -25,8 +25,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      # - ./init:/docker-entrypoint-initdb.d:ro
-      - mysql_data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+      - tcg_db:/var/lib/mysql
   tcg_backend:
     build:
       context: backend/
@@ -43,4 +43,4 @@ services:
     command: ["npm", "start"]
 
 volumes:
-  mysql_data:
+  tcg_db:
