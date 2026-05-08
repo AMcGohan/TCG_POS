@@ -3,6 +3,7 @@ import buy_list from "./definitions/List.js";
 import card_order from "./definitions/Card_Order.js";
 import card from "./definitions/Card.js";
 import customer from "./definitions/Customer.js";
+import card_price from "./definitions/Card_Price.js";
 
 buy_list.hasMany(card_order, {
     foreignKey: 'list_id'
@@ -17,6 +18,9 @@ card.hasMany(card_order, {
 card_order.belongsTo(card, {
     foreignKey: 'card_id'
 });
+
+card_price.hasMany(card_order, { foreignKey: 'price_id'});
+card_order.belongsTo(card_price, { foreignKey: 'price_id'});
 
 buy_list.belongsTo(customer, { foreignKey: 'customer_id'});
 customer.hasMany(buy_list, { foreignKey: 'customer_id'});
@@ -36,6 +40,10 @@ export async function getBuyListService(id) {
                             model: card,
                             attributes: ['card_name', 'card_img', 'set', 'treatment']
                         },
+                        {
+                            model: card_price,
+                            attributes: ['price']
+                        }
                     ]
                 }
             ]
