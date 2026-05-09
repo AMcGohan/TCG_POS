@@ -1,4 +1,4 @@
-Base URL: `localhost:300/api`
+Base URL: `http://localhost:3000/api`
 
 # GET requests
 * `/list/:id` = fetch card list by ID
