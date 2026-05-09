@@ -29,3 +29,6 @@ Base URL: `http://localhost:3000/api`
     "quantity": "3"
 }
 ```
+
+# DELETE requests
+* `/list/:id` = deletes list and card_order associated with `list_id`

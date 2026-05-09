@@ -90,3 +90,16 @@ export async function addToBuyListService(id, cardToAdd) {
         throw error;
     }
 }
+
+export async function deleteBuyListService(id) {
+    try {
+        const result = await buy_list.destroy({
+            where: {
+                id: id
+            }
+        });
+    } catch(error) {
+        console.error(error.message);
+        throw error;
+    }
+}

@@ -12,3 +12,7 @@ export async function createBuyListService(buyListData) {
 export async function addToBuyListService(id, cardsToAdd) {
     return await listModels.addToBuyListService(id, cardsToAdd);
 }
+
+export async function deleteBuyListService(id) {
+    return await listModels.deleteBuyListService(id);
+}

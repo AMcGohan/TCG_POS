@@ -1,4 +1,4 @@
-import { getBuyListService, createBuyListService, addToBuyListService } from "../services/lists.service.js";
+import { getBuyListService, createBuyListService, addToBuyListService, deleteBuyListService } from "../services/lists.service.js";
 
 export async function fetchBuyList(req, res) {
     try {
@@ -30,4 +30,13 @@ export async function addToBuyList(req, res) {
     } catch(error) {
         console.error(error.message)
     }
-} 
+}
+
+export async function deleteBuyList(req, res) {
+    try {
+        const deleteList = await deleteBuyListService(req.params.id);
+        res.json({"Deleted list": req.params.id});
+    } catch(error) {
+        console.error(error.message);
+    }
+}
