@@ -5,6 +5,7 @@ import card from "./definitions/Card.js";
 import customer from "./definitions/Customer.js";
 import card_price from "./definitions/Card_Price.js";
 import employee from "./definitions/Employee.js";
+import sequelize from "../db/sequelize.js";
 
 buy_list.hasMany(card_order, {
     foreignKey: 'list_id'
