@@ -14,14 +14,14 @@ Base URL: `localhost:300/api`
 }
 ```
 
-`/list` = create buy_list
+* `/list` = create buy_list
 ```json
 {
     "customer_id": "customerid",
     "emp_id": "employeeId"
 }
 ```
-`/list/:id` = add to buy_list
+* `/list/:id` = add to buy_list
 ```json
 {
     "card_id": "cardId",
