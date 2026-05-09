@@ -63,9 +63,10 @@ CREATE TABLE `card_price` (
 CREATE TABLE `card_inventory` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `card_id` INT,
-  `condition` ENUM('Damaged','Moderately Played','Light Played'),
+  `condition` ENUM('Damaged', 'Heavily Played', 'Moderately Played','Light Played'),
   `count` INT,
-  `foil` boolean
+  `foil` boolean,
+  `location` ENUM('Binder', 'Case', 'Box')
 );
 
 CREATE TABLE `employee` (
