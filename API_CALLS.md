@@ -1,12 +1,12 @@
 Base URL: `localhost:300/api`
 
 # GET requests
-`/list/:id` = fetch card list by ID
-`/admin/emp` = fetch all employees
-`/cards/mtg/:name` = fetch MTG cards that contain name (case sensitive)
+* `/list/:id` = fetch card list by ID
+* `/admin/emp` = fetch all employees
+* `/cards/mtg/:name` = fetch MTG cards that contain name (case sensitive)
 
 # POST requests
-`/admin/emp` = create a new employee (JSON body)
+* `/admin/emp` = create a new employee (JSON body)
 ```json
 {
     "emp_fname": "Firstname",
