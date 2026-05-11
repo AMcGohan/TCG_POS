@@ -2,10 +2,11 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface Card {
-  name: string;
-  setCode: string;
-  number: string;
-  imgUrl: string;
+  card_name: string;
+  card_img: string;
+  set: string;
+  cn: string;
+  treatment: string;
 }
 
 @Component({
@@ -46,7 +47,7 @@ export class Mtg {
 
       this.cards = result.cards;
       // Fetch images and wait for completion
-      await this.getMTGCardImages();
+      // await this.getMTGCardImages();
       this.cdr.detectChanges();
 
     } catch (error) {
@@ -58,34 +59,34 @@ export class Mtg {
    *  Called by search query; fetches images from Scryfall API and maps it to card by set and collector number
    * @returns 
    */
-async getMTGCardImages() {
-  try {
+// async getMTGCardImages() {
+//   try {
 
-    const response = await fetch(this.SCRYFALL_API + `"${this.cards[0].name}"` + "&unique=prints");
+//     const response = await fetch(this.SCRYFALL_API + `"${this.cards[0].card_name}"` + "&unique=prints");
     
-    if (!response.ok) {
-      console.error("Image getter failed for", this.cards[0].name);
-      return;
-    }
+//     if (!response.ok) {
+//       console.error("Image getter failed for", this.cards[0].card_name);
+//       return;
+//     }
 
-    const result = await response.json();
-    const imageIndex = new Map<string, string>();
+//     const result = await response.json();
+//     const imageIndex = new Map<string, string>();
 
-    for (const print of result.data) {
-      const key = `${print.set}-${print.collector_number}`;
-      imageIndex.set(key.toLowerCase(), print.image_uris.small);
-    }
+//     for (const print of result.data) {
+//       const key = `${print.set}-${print.collector_number}`;
+//       imageIndex.set(key.toLowerCase(), print.image_uris.small);
+//     }
 
-    console.log("Image index: ", imageIndex);
+//     console.log("Image index: ", imageIndex);
 
-    for (const card of this.cards) {
-      const key = `${card.setCode}-${card.number}`;
-      card.imgUrl = imageIndex.get(key.toLowerCase()) || '';
-    }
+//     for (const card of this.cards) {
+//       const key = `${card.setCode}-${card.number}`;
+//       card.imgUrl = imageIndex.get(key.toLowerCase()) || '';
+//     }
 
-    console.log("This.cards: ", this.cards);
-  } catch (error) {
-    console.error('image fetch failed ', error);
-  }
-}
+//     console.log("This.cards: ", this.cards);
+//   } catch (error) {
+//     console.error('image fetch failed ', error);
+//   }
+// }
 }
