@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Card } from '../interfaces/card';
+import { Card } from '../interfaces';
 
 @Component({
   selector: 'app-mtg',
