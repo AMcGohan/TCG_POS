@@ -27,6 +27,12 @@ services:
     volumes:
       - ./init:/docker-entrypoint-initdb.d
       - tcg_db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "admin", "-pgames2026"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
   tcg_backend:
     build:
       context: backend/
@@ -39,8 +45,9 @@ services:
     environment:
       - NODE_ENV=development
     depends_on:
-      - tcg_db
-    command: ["npm", "start"]
+      tcg_db:
+          condition: service_healthy
+    command: ["npm", "run", "dev"]
 
 volumes:
   tcg_db:
