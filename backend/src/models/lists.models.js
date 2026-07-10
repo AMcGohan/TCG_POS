@@ -77,14 +77,48 @@ export async function createBuyListService(listData) {
     }
 }
 
+// Adds card to buylist. First, check if card id is already on list, if so then increase quantity by 1.
 export async function addToBuyListService(id, cardToAdd) {
     try {
-        const cardOrderRes = await card_order.create({
-            list_id: id,
-            card_id: cardToAdd.card_id,
-            price_id: cardToAdd.price_id,
-            quantity: cardToAdd.quantity
-        });
+
+        const listData = await getBuyListService(id);
+        const plainList = listData.get({ plain: true});
+        console.log(plainList);
+
+        const cardOrders = plainList.Card_Orders;
+        let found = null;
+        let order_id = null;
+        let curQuantity = null;
+
+        for (const order of cardOrders) {
+            if (order.card_id === cardToAdd.card_id) {
+                found = order;
+                order_id = order.id;
+                curQuantity = order.quantity;
+                break;
+            }
+        }
+        if (found) {
+            // Increase quantity of found card in list by 1
+            const cardOrderRes = await card_order.update({
+                list_id: id,
+                card_id: cardToAdd.card_id,
+                price_id: cardToAdd.price_id,
+                quantity: curQuantity + 1
+            }, {
+                where: {
+                    id: order_id
+                }
+            })
+        } else {
+            const cardOrderRes = await card_order.create({
+                list_id: id,
+                card_id: cardToAdd.card_id,
+                price_id: cardToAdd.price_id,
+                quantity: cardToAdd.quantity
+            });
+        }
+        
     } catch(error) {
         console.error(error.message);
         throw error;
