@@ -2,7 +2,7 @@ import pool from "../db/connection.js"
 
 export async function getMTGCardService(name) {
     try {
-        const [rows] = await pool.query('SELECT card_name, card_img, `set`, cn, treatment FROM card WHERE card_name LIKE ?', ["%" + name + "%"]);
+        const [rows] = await pool.query('SELECT card_name, card_img, `set`, cn, treatment, id FROM card WHERE card_name LIKE ?', ["%" + name + "%"]);
         console.log("Magic result: ", rows);
         console.log("Input: ", name)
         return rows;
