@@ -1,10 +1,11 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Card } from '../interfaces';
+import { ListService } from '../services/list.service';
 
 @Component({
   selector: 'app-mtg',
-  imports: [FormsModule,],
+  imports: [FormsModule],
   templateUrl: './mtg.html',
   styleUrl: './mtg.scss',
 })
@@ -14,7 +15,11 @@ export class Mtg {
 
   cards: Card[] = [];
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, private listService: ListService) {
+  }
+
+  async addCard(card_id: number, list_id: number) {
+    this.listService.addCard(card_id, list_id);
   }
 
   /**

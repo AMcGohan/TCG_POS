@@ -14,6 +14,7 @@
         <img src="{{ card.card_img }}" alt="{{ card.card_name }}" />
         <p>{{ card.card_name }}</p>
         <h3>{{ card.set }}, {{ card.cn }}</h3> 
+        <button (click)="addCard(card.id, 7)">Add to List</button>
     </div>
     } @empty {
         <li>No cards found</li>
