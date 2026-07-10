@@ -20,6 +20,7 @@ export interface BuyList {
 }
 
 export interface Card {
+  id: number;
   card_name: string;
   card_img: string;
   set: string;
